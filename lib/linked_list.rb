@@ -28,12 +28,22 @@ class LinkedList
     end
     node_counter
   end
-end
 
-# list = LinkedList.new(0)
-# list.append(10)
-# list.append(20)
-# list.prepend(-10)
-# list.append(30)
-# p list
-# p list.size
+  def head
+    @head.value
+  end
+
+  def tail
+    pointer = @head
+    pointer = pointer.next_node until pointer.next_node.nil?
+    pointer.value
+  end
+
+  def at(index)
+    pointer = @head
+    index.times do
+      pointer = pointer.next_node
+    end
+    pointer.value
+  end
+end
