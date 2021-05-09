@@ -10,7 +10,7 @@ class Node
   end
 end
 
-node1 = Node.new(10)
-node2 = Node.new(15)
-p node1
-p node2
+# node1 = Node.new(10)
+# node2 = Node.new(15)
+# p node1
+# p node2
