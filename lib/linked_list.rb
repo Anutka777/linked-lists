@@ -65,4 +65,17 @@ class LinkedList
     end
     contains
   end
+
+  def find(value)
+    index = 0
+    pointer = @head
+    return index if pointer.value == value
+
+    until pointer.next_node.nil?
+      pointer = pointer.next_node
+      index += 1
+      break index if pointer.value == value
+
+    end
+  end
 end
