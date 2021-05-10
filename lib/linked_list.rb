@@ -46,4 +46,23 @@ class LinkedList
     end
     pointer.value
   end
+
+  def pop
+    pointer = @head
+    pointer = pointer.next_node until pointer.next_node.next_node.nil?
+    pointer.next_node = nil
+  end
+
+  def contains?(value)
+    contains = false
+    pointer = @head
+    contains = true if pointer.value == value
+
+    until pointer.next_node.nil?
+      pointer = pointer.next_node
+      break contains = true if pointer.value == value
+
+    end
+    contains
+  end
 end
