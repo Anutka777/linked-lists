@@ -41,16 +41,24 @@ class LinkedList
 
   def at(index)
     pointer = @head
-    index.times do
-      pointer = pointer.next_node
+    if index >= size || index.negative?
+      puts "There's no node at such index"
+    else
+      index.times do
+        pointer = pointer.next_node
+      end
+      pointer.value
     end
-    pointer.value
   end
 
   def pop
     pointer = @head
-    pointer = pointer.next_node until pointer.next_node.next_node.nil?
-    pointer.next_node = nil
+    if pointer.next_node.nil?
+      puts 'There is no element to pop.'
+    else
+      pointer = pointer.next_node until pointer.next_node.next_node.nil?
+      pointer.next_node = nil
+    end
   end
 
   def contains?(value)
@@ -76,6 +84,40 @@ class LinkedList
       index += 1
       break index if pointer.value == value
 
+    end
+  end
+
+  def to_s
+    pointer = @head
+    print "(#{pointer.value})"
+    until pointer.next_node.nil?
+      pointer = pointer.next_node
+      print " -> (#{pointer.value})"
+    end
+    puts ' -> nil'
+  end
+
+  def insert_at(value, index)
+    pointer = @head
+    if index <= 0
+      prepend(value)
+    elsif index > size
+      append(value)
+    else
+      (index - 1).times { pointer = pointer.next_node }
+      pointer.next_node = Node.new(value, pointer.next_node)
+    end
+  end
+
+  def remove_at(index)
+    pointer = @head
+    if index <= 0
+      @head = pointer.next_node
+    elsif index >= size
+      puts "There's no node at such index."
+    else
+      (index - 1).times { pointer = pointer.next_node }
+      pointer.next_node = pointer.next_node.next_node
     end
   end
 end
